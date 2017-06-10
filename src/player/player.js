@@ -1,11 +1,11 @@
-const ctx = document.currentScript.ownerDocument;
+const playerCtx = document.currentScript.ownerDocument;
 
 class Player extends HTMLElement {
     constructor() {
         super();
 
         const shadow = this.attachShadow({mode: 'open'});
-        const template = ctx.querySelector('#myradio-player-template');
+        const template = playerCtx.querySelector('#myradio-player-template');
         shadow.appendChild( document.importNode(template.content, true) );
 
     }
