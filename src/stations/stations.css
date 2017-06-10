@@ -59,3 +59,25 @@
 .tools {
     margin-bottom: 20px;
 }
+
+.navigator {
+    text-align: center;
+}
+
+#curPage {
+    font-weight: bold;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #8b8b8b;
+    background-color: #282828;
+    margin-left: 5px;
+}
