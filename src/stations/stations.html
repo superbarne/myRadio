@@ -3,6 +3,32 @@
 <template id="myradio-stations-template">
     <link rel="stylesheet" href="src/stations/stations.css">
     <div class="container">
+        <h1>Radiosender</h1>
+        <div class="tools">
+            <div class="sorting">Name </div>
+            <div class="filter">
+                <input id="search" placeholder="suche...">
+                <select>
+                    <option>Region</option>
+                </select>
+                <select>
+                    <option>Genre</option>
+                </select>
+            </div>
 
+        </div>
+        <div id="stations-holder"></div>
+    </div>
+</template>
+<template id="myradio-stations-item-template">
+    <div class="station-item">
+        <img id="station-img">
+        <div class="inner">
+            <h2 id="station-name">GK International</h2>
+            <div class="station-tags">
+                <a target="_blank" href="#">►</a>
+                <a target="_blank" href="http://gk.theradiothat.rocks/">Website</a>
+            </div>
+        </div>
     </div>
 </template>
