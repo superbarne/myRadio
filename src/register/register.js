@@ -19,7 +19,7 @@ class Register extends HTMLElement {
         if(!userdata[`${username}:${password}`]) {
             userdata[`${username}:${password}`] = {
                 name: username,
-                playlists: []
+                playlists: {}
             };
             this.socket.meta.userdata = userdata;
             this.socket.broadcast('info');

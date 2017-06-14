@@ -8,6 +8,7 @@ class Login extends HTMLElement {
         const template = loginCtx.querySelector('#myradio-login-template');
         this.shadow.appendChild( document.importNode(template.content, true) );
         this.shadow.querySelector('button').addEventListener('click', () => this.login());
+        this.socket = new Socket();
     }
 
     login() {
@@ -17,6 +18,7 @@ class Login extends HTMLElement {
         let data = JSON.parse(localStorage.getItem('userdata') || '{}');
         if(data[`${username}:${password}`]) {
             localStorage.setItem('me',`${username}:${password}`);
+            this.socket.broadcast('info');
             location.href = '#/stations';
         } else {
             alert('Falsch');

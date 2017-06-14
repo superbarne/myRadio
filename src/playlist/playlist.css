@@ -1,0 +1,56 @@
+h4 {
+    padding: 3px 23px;
+    margin-bottom: 15px;
+}
+
+.menu, .menu li {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+.menu a {
+    color: #8b8b8b;
+    text-decoration: none;
+    display: block;
+    padding: 3px 20px;
+    border-left: 3px solid transparent;
+}
+
+.menu a:hover {
+    color: #fff;
+}
+
+.menu a.active {
+    border-left: 3px solid #1ed660;
+}
+
+.fav {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAAA9lBMVEUAAACLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4vikW07AAAAUXRSTlMAAQIEBgcICgsMEBIXGh8jJCwuMjM2Nzk7PEBCS0xSVFVXWVtcXV5hZmdoa291eXx+f4KFiIuOkZSVnaClsre8w8XP09ne5Obo7e/x8/f5+/23KC97AAACqElEQVR42u3dyVYTYRSF0RuCgnRKIyiogCJ9oyAI0oP0YPjf/2UcyHIFSE1hcPf3ApWzBxlUDW7E81Xrm17d2V6Z6ImU1Wdvyl0XH2r59g9elaZOerPtnyn3u32Xe38p5W2m/UOP95dGov/C+nULgHKUB2ChtOx9lv1tjdYAx1kA3pSKXiUBmKsCGEkCsFEFMJkEYLcKYCkJwGEVwBoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKiqe3Rqee1JuqwC+P00z1+aHOl8uL7t02lJ1fH9y279ZyVdR033Db+UjDX+37icL0m7u3M6knV/ue2NiHjZSAtQTmoR8b0k7mNEe+b95SJiODVA6Yn13AATsZ8bYCXOcwNsx0VugJ04yA2wGlu5AaZjLDdAX3Sm3n9Ti/iVGWA2IroS77+qR0RM5QUY/PdC4GfW/TN3b4Rq67n3R8T4bb7510PNr4U7fiSb31ioP/gyUB9Y3Nw7fJL+VP2qy6d5/u7G3Os2n8YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEDr9qoAlpMAbFYBTCUBWKwCGE0CMFAF0J0EoF6x/zSyVHHZ7VMagI6W1/3O2tIAxHgrgP5IVIsbl58z7Y/aozun85Gsr/cPQI5EurqaLj5/exEZ6xzbOrg4318fbn/GH/EXcGnsSunjXmkAAAAASUVORK5CYII=");
+    background-size: contain;
+    width: 15px;
+    float: right;
+    height: 15px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.remove {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEABAMAAACuXLVVAAAAFVBMVEUAAACLi4uLi4uLi4uLi4uLi4uLi4uvUh0wAAAABnRSTlMAAgYRKmQJXasDAAAAV0lEQVR4nO3YMQEAIADDsFkBK2AF/EtAxg4SBb2bAAAAAAAAAAAAAAAAAMD3ZtfI7ToCBAgQIECAAAECBAgQIECAAAHZXat9iAAAAAAAAAAAAAAAAACAPJy2xjgU5gTdAAAAAElFTkSuQmCC");
+    background-size: contain;
+    width: 13px;
+    height: 13px;
+    margin: 5px;
+    margin-right: 24px;
+    float: right;
+    cursor: pointer;
+    display: inline-block;
+    display: none;
+}
+
+.menu li:hover .remove {
+    display: inline-block;
+}
+.fav:hover {
+    transform: scale(1.2);
+}
