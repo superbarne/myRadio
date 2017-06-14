@@ -1,0 +1,26 @@
+
+.me {
+
+    padding-left: 23px;
+    border-bottom: 1px solid #282828;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.me h1 {
+    font-weight: 100;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.me a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px;
+    color:#8b8b8b;
+    background-color: #282828;
+}
+
+a {
+    cursor: pointer;
+}

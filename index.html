@@ -10,25 +10,18 @@
     <script src="src/socket.js"></script>
     <link rel="import" href="src/player/player.html">
     <link rel="import" href="src/stations/stations.html">
+    <link rel="import" href="src/register/register.html">
     <link rel="import" href="src/login/login.html">
+    <link rel="import" href="src/user/user.html">
 </head>
 <body>
     <div id="sidebar">
-        <div class="me">
-            <h1>Barne Jürgensen</h1>
-            <a href="#/login">Abmelden</a>
-        </div>
+        <myradio-user></myradio-user>
         <h4>MyRadio</h4>
         <ul class="menu">
             <li><a class="link-active" href="#/stations">Radiosender</a></li>
         </ul>
-        <h4>Favoriten</h4>
-        <ul class="menu">
-            <li><a class="link-active" href="#/list/1">Test 1</a></li>
-            <li><a class="link-active" href="#/list/2">Test 2</a></li>
-            <li><a class="link-active" href="#/list/3">Test 3</a></li>
-            <li><a class="link-active" href="#/list/4">Test 4</a></li>
-        </ul>
+
     </div>
     <div id="content">
         <myradio-router></myradio-router>

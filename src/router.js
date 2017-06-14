@@ -5,6 +5,7 @@ class Router extends HTMLElement {
         super();
         this.routes = {
             '/login': Login,
+            '/register': Register,
             '/stations': Stations,
             '/list/:id': Stations
         };
@@ -42,6 +43,7 @@ class Router extends HTMLElement {
     }
 
     checkRoute() {
+        if(window.location.hash != '#/login' && !localStorage.getItem('me')) window.location.hash = '#/login';
         const hash = window.location.hash.replace('#','');
         const Element = this.routes[hash] || this.getRoute(hash);
         if(Element) {

@@ -4,10 +4,23 @@ class Login extends HTMLElement {
     constructor() {
         super();
 
-        const shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'open'});
         const template = loginCtx.querySelector('#myradio-login-template');
-        shadow.appendChild( document.importNode(template.content, true) );
+        this.shadow.appendChild( document.importNode(template.content, true) );
+        this.shadow.querySelector('button').addEventListener('click', () => this.login());
+    }
 
+    login() {
+        let username = this.shadow.querySelector('#username').value;
+        let password = this.shadow.querySelector('#password').value;
+
+        let data = JSON.parse(localStorage.getItem('userdata') || '{}');
+        if(data[`${username}:${password}`]) {
+            localStorage.setItem('me',`${username}:${password}`);
+            location.href = '#/stations';
+        } else {
+            alert('Falsch');
+        }
     }
 }
 

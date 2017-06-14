@@ -6,7 +6,7 @@ set_time_limit(0);
 // include the web sockets server script (the server is started at the far bottom of this file)
 require './class.PHPWebSocket.php';
 
-$meineMaxNachrichtenLaenge = 200;
+$meineMaxNachrichtenLaenge = 20000000;
 
 
 // when a client sends data to the server
