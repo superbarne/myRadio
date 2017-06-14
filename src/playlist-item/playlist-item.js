@@ -11,7 +11,8 @@ class PlaylistItem extends HTMLElement {
         let me = localStorage.getItem('me');
         let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');
 
-        this.stations = userdata[me].playlists[params.id].stations;
+        this.stations = userdata[me].playlists[params.id].items;
+        this.shadow.querySelector('#name').innerHTML =  userdata[me].playlists[params.id].name;
         this.render();
     }
 

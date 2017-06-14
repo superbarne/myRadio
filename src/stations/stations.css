@@ -47,13 +47,17 @@
     float: right;
 }
 
-.filter input, .filter select {
+.filter input, .filter select, .station-tags select {
     display: inline-block;
     box-sizing: border-box;
     background-color: #282828;
     border: 1px solid #181818;
     padding: 8px;
     color: #8b8b8b;
+}
+
+.station-tags select {
+    padding: 3px;
 }
 
 .tools {

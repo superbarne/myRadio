@@ -56,6 +56,10 @@ class Stations extends HTMLElement {
 
     renderStations() {
         let holder = this.shadow.querySelector('#stations-holder');
+        let me = localStorage.getItem('me');
+        let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');
+        let playlists = userdata[me].playlists;
+
         holder.innerHTML = '';
         this.shadow.querySelector('#curPage').innerText = this.query.page+1;
         const template = stationsnCtx.querySelector('#myradio-stations-item-template');
@@ -73,8 +77,29 @@ class Stations extends HTMLElement {
                 };
                 this.socket.broadcast('play', { station });
             });
+            let playlist = element.querySelector('#playlist');
+            for(let id in playlists) {
+                let item = document.createElement('option');
+                item.innerHTML = playlists[id].name;
+                item.dataset.id = id;
+                playlist.appendChild(item);
+            }
+            playlist.addEventListener('change', (e) => {
+                this.add(playlist.options[playlist.selectedIndex].dataset.id, station);
+                playlist.selectedIndex=0;
+            });
             holder.appendChild(element);
         }
+    }
+
+    add(playlistId, station) {
+        let me = localStorage.getItem('me');
+        let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');
+        userdata[me].playlists[playlistId].items[+new Date+''+Math.round(Math.random()*1000)] = station;
+        this.socket.meta.userdata = userdata;
+        localStorage.setItem('userdata',JSON.stringify(userdata));
+        this.socket.broadcast('info');
+        alert('Hinzugefügt!');
     }
 
 }
