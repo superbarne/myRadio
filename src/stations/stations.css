@@ -81,3 +81,7 @@
     background-color: #282828;
     margin-left: 5px;
 }
+
+#station-play {
+    cursor: pointer;
+}

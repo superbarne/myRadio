@@ -11,7 +11,8 @@ class Stations extends HTMLElement {
             page: 0,
             offset: 0,
             per_page: 15
-        }
+        };
+        this.socket = new Socket();
     }
 
     connectedCallback() {
@@ -59,10 +60,19 @@ class Stations extends HTMLElement {
         this.shadow.querySelector('#curPage').innerText = this.query.page+1;
         const template = stationsnCtx.querySelector('#myradio-stations-item-template');
         for(let i in this.stations) {
-            const station = this.stations[i];
+            let station = this.stations[i];
             let element = document.importNode(template.content, true);
             element.querySelector('#station-name').innerText = station.name;
             element.querySelector('#station-img').setAttribute('src',station.image.url || 'assets/images/ionicons_2-0-1_radio-waves_256_0_8b8b8b_none.png')
+            element.querySelector('#station-play').addEventListener('click', () => {
+                if(!station.streams) return;
+                station = {
+                    id: station.id,
+                    name: station.name,
+                    stream: station.streams[0].stream,
+                };
+                this.socket.broadcast('play', { station });
+            });
             holder.appendChild(element);
         }
     }
