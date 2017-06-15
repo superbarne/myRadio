@@ -10,13 +10,13 @@ class User extends HTMLElement {
         this.shadow.querySelector('#logout').addEventListener('click', () => this.logout());
 
         this.socket = new Socket();
-        this.socket.on('connected', () => {
+        this.socket.on('connected', () => { // wenn verbunden seine Nutzerdaten bordcasten für alle anderen
             let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');
             this.socket.meta.userdata = userdata;
             this.socket.broadcast('info');
         });
 
-        this.socket.on(['info','join'], (e) => {
+        this.socket.on(['info','join'], (e) => { // bei updates seine eigenen Nutzerdaten mergen
             if(e.meta.userdata) {
                 let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');
                 Object.assign(userdata, e.meta.userdata);
@@ -25,7 +25,7 @@ class User extends HTMLElement {
         })
     }
 
-    logout() {
+    logout() { // eigen session beenden und auf login leiten
         localStorage.setItem('me', null);
         location.href = '#/login';
     }

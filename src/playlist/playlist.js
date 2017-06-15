@@ -7,17 +7,17 @@ class Playlist extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         const template = playlistCtx.querySelector('#myradio-playlist-template');
         this.shadow.appendChild( document.importNode(template.content, true) );
-        this.shadow.querySelector('.fav').addEventListener('click', () => this.add())
+        this.shadow.querySelector('.fav').addEventListener('click', () => this.add()); // binding für das hinzufügen von playlisten
         this.socket = new Socket();
-        this.socket.on(['join','info'],(e) => this.render());
+        this.socket.on(['join','info'],(e) => this.render()); // bei neuen updates einfach mal neu rendern
     }
 
     add() {
         let me = localStorage.getItem('me');
         if(!me) return alert('Du bist nicht angemeldet');
         let name = prompt('Playlist name:');
-        let playlist = {
-            id: +new Date+''+Math.round(Math.random()*1000),
+        let playlist = { // neue playliste definieren
+            id: +new Date+''+Math.round(Math.random()*1000), // Math.random sicher ist sicher
             createdAt: new Date,
             name,
             items: {}
@@ -25,11 +25,11 @@ class Playlist extends HTMLElement {
 
         let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');
 
-        userdata[me].playlists[playlist.id] = playlist;
+        userdata[me].playlists[playlist.id] = playlist; // und dem aktuellen Nutzer hinzufügen
 
-        this.socket.meta.userdata = userdata;
-        localStorage.setItem('userdata',JSON.stringify(userdata));
-        this.socket.broadcast('info');
+        this.socket.meta.userdata = userdata; // in socket meta rein packen
+        localStorage.setItem('userdata',JSON.stringify(userdata)); // speichern
+        this.socket.broadcast('info'); // und bekannt geben
     }
 
     render() {
@@ -39,7 +39,8 @@ class Playlist extends HTMLElement {
         if(!me) return;
 
         let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');
-        for(let id in userdata[me].playlists) {
+
+        for(let id in userdata[me].playlists) { // die playlists durch loopen
             if(userdata[me].playlists[id].deleted) continue;
             let item = document.createElement('li');
             let a = document.createElement('a');
@@ -54,7 +55,7 @@ class Playlist extends HTMLElement {
         }
     }
 
-    remove(id) {
+    remove(id) { // playlisten werden nicht gelöscht, sondern nur deaktiviert, so übersteht es auch ein object.assign
         let me = localStorage.getItem('me');
         if(!me) return;
         let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');

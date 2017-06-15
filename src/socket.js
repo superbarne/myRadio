@@ -2,7 +2,7 @@ let socketInstance = null;
 
 class Socket extends EventEmitter {
     constructor() {
-        if(socketInstance) return socketInstance;
+        if(socketInstance) return socketInstance; // Socket Klasse nur einal instanzieren (Singleton);
         super();
 
         this.id = +new Date+''+Math.round(Math.random()*10000);
@@ -18,18 +18,20 @@ class Socket extends EventEmitter {
 
         this.sockets = {};
 
+        // binding von websocket auf den eigenn EventEmitter
         this.ws.onopen = (event) => this.emit('connected', event);
         this.ws.onmessage = (data) => this.emit('data',data);
         this.ws.onclose = (event) => this.emit('closed', event)
 
+
         this.on('connected', () => this.broadcast('join'));
-        this.on('leave', (message) => delete this.sockets[message.id])
-        this.on('data', (message) => this.parseMessage(message));
-        this.on('message', (message) => console.log(message));
-        this.on('message', (message) => message.event ? this.emit(message.event, message) : null )
-        this.on(['info', 'join'], (message) => this.sockets[message.id] = message)
-        this.on('join', (message) => this.broadcast('info'))
-        window.addEventListener("beforeunload", () => this.close());
+        this.on('leave', (message) => delete this.sockets[message.id]); // beim verlassen socket aus interner liste entfernen
+        this.on('data', (message) => this.parseMessage(message)); // bei ws daten sie parsen
+        this.on('message', (message) => console.log(message)); // debug output
+        this.on('message', (message) => message.event ? this.emit(message.event, message) : null ); // message mit event emiten
+        this.on(['info', 'join'], (message) => this.sockets[message.id] = message);
+        this.on('join', (message) => this.broadcast('info')); // wenn jemadn joint sie über ein informieren
+        window.addEventListener("beforeunload", () => this.close()); // wenn man den tab schließt sich verabschieden
 
         socketInstance = this;
     }
@@ -91,8 +93,8 @@ class Socket extends EventEmitter {
      * entschlüsselungs methode
      **/
     decrypt(string) {
-        var code = [];
-        for (var i = 0; i < string.length; i++) {
+        let code = [];
+        for (let i = 0; i < string.length; i++) {
             code.push(string.charCodeAt(i)-5);
         }
         return Promise.resolve(code.reduce(function(str, i) {

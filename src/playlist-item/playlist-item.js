@@ -1,7 +1,7 @@
 const playlistItemCtx = document.currentScript.ownerDocument;
 
 class PlaylistItem extends HTMLElement {
-    constructor(params) {
+    constructor(params)  { // im Konstrktor werden die route parameter übergeben
         super();
 
         this.shadow = this.attachShadow({mode: 'open'});
@@ -11,9 +11,9 @@ class PlaylistItem extends HTMLElement {
         let me = localStorage.getItem('me');
         let userdata = JSON.parse(localStorage.getItem('userdata') || '{}');
 
-        this.stations = userdata[me].playlists[params.id].items;
-        this.shadow.querySelector('#name').innerHTML =  userdata[me].playlists[params.id].name;
-        this.render();
+        this.stations = userdata[me].playlists[params.id].items; // die gewünschte playlist holen
+        this.shadow.querySelector('#name').innerHTML =  userdata[me].playlists[params.id].name; // den namen anzeigen
+        this.render(); // und rendern
     }
 
     render() {
@@ -33,7 +33,7 @@ class PlaylistItem extends HTMLElement {
                     name: station.name,
                     stream: station.streams[0].stream,
                 };
-                this.socket.broadcast('play', { station });
+                this.socket.broadcast('play', { station }); // das abspielen per event triggern
             });
             holder.appendChild(element);
         }
